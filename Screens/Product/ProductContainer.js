@@ -5,20 +5,31 @@ import { Ionicons, MaterialIcons, SmallCloseIcon } from "@expo/vector-icons";
 import ProductList from './ProductList'
 import SearchedProduct from "./SearchedProduct";
 import Banner from "../../Shared/Banner";
-
+import CategoryFilter from "./CategoryFilter";
 const data = require('../../assets/data/products.json')
+const productCategories = require('../../assets/data/categories.json')
+
 const ProductContainer = () => {
     const [products, setProducts] = useState([])
     const [productsFiltered, setProductsFiltered] = useState([]);
     const [focus, setFocus] = useState();
+    const [categories, setCategories] = useState([]);
+    const [active, setActive] = useState([]);
+    const [initialState, setInitialState] = useState([])
     useEffect(() => {
         setProducts(data);
         setProductsFiltered(data);
         setFocus(false);
+        setCategories(productCategories)
+        setActive(-1)
+        setInitialState(data);
         return () => {
             setProducts([])
             setProductsFiltered([]);
             setFocus();
+            setCategories([])
+            setActive()
+            setInitialState();
         }
     }, [])
 
@@ -42,7 +53,8 @@ const ProductContainer = () => {
 
         <Center>
             <VStack w="100%" space={5} alignSelf="center">
-                <Heading fontSize="lg">Search</Heading>
+                <Banner />
+
                 <Input
                     onFocus={openList}
                     onChangeText={(text) => searchProduct(text)}
@@ -53,7 +65,7 @@ const ProductContainer = () => {
                     py="1"
                     px="2"
                     InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />}
-                    InputRightElement={focus === true ? <Icon ml="2" size="4" color="gray.400" as={<Ionicons name="close" size="12" color="black"  />}/>: null}
+                    InputRightElement={focus === true ? <Icon ml="2" size="4" color="gray.400" as={<Ionicons name="close" size="12" color="black" />} /> : null}
                 />
             </VStack>
             {focus === true ? (
@@ -61,8 +73,11 @@ const ProductContainer = () => {
                     productsFiltered={productsFiltered}
                 />
             ) : (
+
                 <ScrollView>
-                    <Banner />
+                    <View >
+                        <CategoryFilter />
+                    </View>
                     <FlatList
                         //    horizontal
                         columnWrapperStyle={{ justifyContent: 'space-between' }}
