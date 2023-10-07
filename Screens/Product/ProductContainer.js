@@ -70,7 +70,7 @@ const ProductContainer = () => {
 
         <Center>
             <VStack w="100%" space={5} alignSelf="center">
-                <Banner />
+                
 
                 <Input
                     onFocus={openList}
@@ -92,6 +92,9 @@ const ProductContainer = () => {
             ) : (
 
                 <ScrollView>
+                    <View>
+                    <Banner />
+                    </View>
                     <View >
                         <CategoryFilter
                             categories={categories}

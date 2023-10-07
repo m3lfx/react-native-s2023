@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
+// import { useSelector, useDispatch } from 'react-redux'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import HomeNavigator from "./HomeNavigator";
+// import Cart from "../Screens/Cart/Cart";
+// import CartIcon from "../Shared/CartIcon";
 
 const Tab = createBottomTabNavigator();
 
@@ -9,7 +13,7 @@ const Main = () => {
     return (
         <Tab.Navigator
             initialRouteName="Home"
-            screenOptions={ {
+            screenOptions={{
                 tabBarHideOnKeyboard: true,
                 tabBarShowLabel: false,
                 tabBarActiveTintColor: '#e91e63'
@@ -17,12 +21,12 @@ const Main = () => {
         >
             <Tab.Screen
                 name="Home"
-                component={Home}
+                component={HomeNavigator}
                 options={{
-                    tabBarIcon: ({color}) => {
+                    tabBarIcon: ({ color }) => {
                         return <Icon
                             name="home"
-                            style={{position: "relative"}}
+                            style={{ position: "relative" }}
                             color={color}
                             size={30}
 
@@ -32,29 +36,33 @@ const Main = () => {
             />
 
             <Tab.Screen
-                name="Home"
-                component={Home}
+                name="Cart"
+                component={HomeNavigator}
                 options={{
-                    tabBarIcon: ({color}) => {
-                        return <Icon
-                            name="shopping-cart"
-                            style={{position: "relative"}}
-                            color={color}
-                            size={30}
+                    tabBarIcon: ({ color }) => {
+                        return(
+                        <>
+                            <Icon
+                                name="shopping-cart"
+                                style={{ position: "relative" }}
+                                color={color}
+                                size={30}
 
-                        />
+                            />
+                            {/* <CartIcon /> */}
+                        </>)
                     }
                 }}
             />
 
             <Tab.Screen
-                name="Home"
-                component={Home}
+                name="Admin"
+                component={HomeNavigator}
                 options={{
-                    tabBarIcon: ({color}) => {
+                    tabBarIcon: ({ color }) => {
                         return <Icon
                             name="cog"
-                            style={{position: "relative"}}
+                            style={{ position: "relative" }}
                             color={color}
                             size={30}
 
@@ -64,12 +72,12 @@ const Main = () => {
             />
             <Tab.Screen
                 name="User"
-                component={Home}
+                component={HomeNavigator}
                 options={{
-                    tabBarIcon: ({color}) => {
+                    tabBarIcon: ({ color }) => {
                         return <Icon
                             name="user"
-                            style={{position: "relative"}}
+                            style={{ position: "relative" }}
                             color={color}
                             size={30}
 

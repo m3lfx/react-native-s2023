@@ -3,11 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NativeBaseProvider, extendTheme } from "native-base";
 
 import { NavigationContainer } from '@react-navigation/native'
-import Main from './Navigators/Main'
+
 
 import ProductContainer from './Screens/Product/ProductContainer';
 import Header from './Shared/Header';
-
+import Main from './Navigators/Main';
 const newColorTheme = {
   brand: {
     900: "#8287af",
@@ -18,15 +18,15 @@ const newColorTheme = {
 const theme = extendTheme({ colors: newColorTheme });
 export default function App() {
   return (
-    <NavigationContainer>
+    
       <NativeBaseProvider theme={theme}>
-        <View style={styles.container}>
+        <NavigationContainer>
           <Header />
-          <ProductContainer />
-          <StatusBar style="auto" />
-        </View>
+          <Main />
+          
+        </NavigationContainer>
       </NativeBaseProvider>
-    </NavigationContainer>
+    
   );
 }
 
