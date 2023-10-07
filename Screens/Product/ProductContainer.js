@@ -4,6 +4,7 @@ import { Container, Header, Icon, Item, Input, Text, VStack, Heading, Center, } 
 import { Ionicons, MaterialIcons, SmallCloseIcon } from "@expo/vector-icons";
 import ProductList from './ProductList'
 import SearchedProduct from "./SearchedProduct";
+import Banner from "../../Shared/Banner";
 
 const data = require('../../assets/data/products.json')
 const ProductContainer = () => {
@@ -61,6 +62,7 @@ const ProductContainer = () => {
                 />
             ) : (
                 <ScrollView>
+                    <Banner />
                     <FlatList
                         //    horizontal
                         columnWrapperStyle={{ justifyContent: 'space-between' }}
