@@ -10,21 +10,23 @@ import Header from './Shared/Header';
 
 const newColorTheme = {
   brand: {
-      900: "#8287af",
-      800: "#7c83db",
-      700: "#b3bef6",
+    900: "#8287af",
+    800: "#7c83db",
+    700: "#b3bef6",
   },
 };
 const theme = extendTheme({ colors: newColorTheme });
 export default function App() {
   return (
-    <NativeBaseProvider theme={theme}>
-    <View style={styles.container}>
-      <Header />
-      <ProductContainer />
-      <StatusBar style="auto" />
-    </View>
-    </NativeBaseProvider>
+    <NavigationContainer>
+      <NativeBaseProvider theme={theme}>
+        <View style={styles.container}>
+          <Header />
+          <ProductContainer />
+          <StatusBar style="auto" />
+        </View>
+      </NativeBaseProvider>
+    </NavigationContainer>
   );
 }
 
