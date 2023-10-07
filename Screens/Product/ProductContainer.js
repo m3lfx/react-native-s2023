@@ -17,32 +17,32 @@ const ProductContainer = () => {
     return (
         <ScrollView>
             <Center>
-            <VStack w="100%" space={5} alignSelf="center">
-                <Heading fontSize="lg">Search</Heading>
-                <Input 
-                placeholder="Search" 
-                variant="filled" 
-                width="100%" 
-                borderRadius="10" 
-                py="1" 
-                px="2" 
-                InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
-            </VStack>
-            <View>
-               
-                <View style={styles.listContainer} >
-                    <FlatList 
-                    //    horizontal
-                    columnWrapperStyle={{justifyContent: 'space-between'}}
-                    numColumns={2}
-                        data={products}
-                        // renderItem={({item}) => <Text>{item.brand}</Text>}
-                        renderItem={({item}) => <ProductList key={item.id} item={item}/>}
-                        keyExtractor={item => item.name}
-                    />
+                <VStack w="100%" space={5} alignSelf="center">
+                    <Heading fontSize="lg">Search</Heading>
+                    <Input
+                        placeholder="Search"
+                        variant="filled"
+                        width="100%"
+                        borderRadius="10"
+                        py="1"
+                        px="2"
+                        InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
+                </VStack>
+                <View>
+
+                    <View style={styles.listContainer} >
+                        <FlatList
+                            //    horizontal
+                            columnWrapperStyle={{ justifyContent: 'space-between' }}
+                            numColumns={2}
+                            data={products}
+                            // renderItem={({item}) => <Text>{item.brand}</Text>}
+                            renderItem={({ item }) => <ProductList key={item.id} item={item} />}
+                            keyExtractor={item => item.name}
+                        />
+                    </View>
                 </View>
-            </View>
-        </Center>
+            </Center>
         </ScrollView>
     )
 }
