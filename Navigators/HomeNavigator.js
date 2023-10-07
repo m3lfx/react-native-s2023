@@ -7,14 +7,22 @@ const Stack = createStackNavigator()
 function MyStack() {
     return (
         <Stack.Navigator>
-            <Stack.Screen 
+            <Stack.Screen
                 name='Home'
                 component={ProductContainer}
                 options={{
                     headerShown: false,
                 }}
             />
-           
+
+            <Stack.Screen
+                name='Product Detail'
+                component={SingleProduct}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
         </Stack.Navigator>
     )
 }
