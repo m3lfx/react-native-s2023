@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, FlatList, ActivityIndicator, ScrollView } from 'react-native'
+import { View, StyleSheet, FlatList, ActivityIndicator, ScrollView, Dimensions } from 'react-native'
 import { Container, Header, Icon, Item, Input, Text } from "native-base";
 
 import ProductList from './ProductList'
 
 const data = require('../../assets/data/products.json')
+
 
 const ProductContainer = () => {
     const [products, setProducts] = useState([])
@@ -17,7 +18,7 @@ const ProductContainer = () => {
 
     return (
         <ScrollView>
-           
+
             <View style={{ marginTop: 200 }} >
                 <FlatList
                     //    horizontal
