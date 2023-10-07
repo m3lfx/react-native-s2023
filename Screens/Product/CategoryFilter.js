@@ -16,10 +16,10 @@ const CategoryFilter = (props) => {
                             props.categoryFilter('all'), props.setActive(-1)
                         }}
                     >
-                         <Badge style={[styles.center, {margin: 4}, 
-                            props.active === -1 ? styles.active : styles.inactive]} colorScheme="info" >
-                                <Text style={{ color: 'black'}}>all</Text>
-                            </Badge>
+                        <Badge style={[styles.center, { margin: 4 },
+                        props.active === -1 ? styles.active : styles.inactive]} colorScheme="info" >
+                            <Text style={{ color: 'black' }}>all</Text>
+                        </Badge>
                     </TouchableOpacity>
                     {props.categories.map((item) => (
                         <TouchableOpacity
@@ -41,7 +41,7 @@ const CategoryFilter = (props) => {
                     ))}
                 </HStack>
             </VStack>
-           
+
         </ScrollView>
 
 
