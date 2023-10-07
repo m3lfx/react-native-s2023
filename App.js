@@ -5,7 +5,6 @@ import { NativeBaseProvider, extendTheme } from "native-base";
 import ProductContainer from './Screens/Product/ProductContainer';
 import Header from './Shared/Header';
 
-
 const newColorTheme = {
   brand: {
       900: "#8287af",
