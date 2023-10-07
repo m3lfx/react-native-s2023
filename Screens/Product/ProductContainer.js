@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList, ActivityIndicator, ScrollView, Dimensions } from 'react-native'
-import { Container, Header, Icon, Item, Input, Text, VStack, Heading, Center, SmallCloseIcon } from "native-base";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Container, Header, Icon, Item, Input, Text, VStack, Heading, Center, } from "native-base";
+import { Ionicons, MaterialIcons, SmallCloseIcon } from "@expo/vector-icons";
 import ProductList from './ProductList'
 import SearchedProduct from "./SearchedProduct";
 
@@ -52,7 +52,7 @@ const ProductContainer = () => {
                     py="1"
                     px="2"
                     InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />}
-                    InputRightElement={focus === true ? <SmallCloseIcon onPress={onBlur} /> : null}
+                    InputRightElement={focus === true ? <Icon ml="2" size="4" color="gray.400" as={<Ionicons name="close" size="12" color="black"  />}/>: null}
                 />
             </VStack>
             {focus === true ? (
