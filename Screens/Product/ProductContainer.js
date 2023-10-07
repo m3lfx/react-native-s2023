@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList, ActivityIndicator, ScrollView, Dimensions } from 'react-native'
-import { Container, Header, Icon, Item, Input, Text, VStack, Heading } from "native-base";
+import { Container, Header, Icon, Item, Input, Text, VStack, Heading, Center } from "native-base";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ProductList from './ProductList'
 
@@ -16,7 +16,7 @@ const ProductContainer = () => {
 
     return (
         <ScrollView>
-            <Container>
+            <Center>
             <VStack w="100%" space={5} alignSelf="center">
                 <Heading fontSize="lg">Search</Heading>
                 <Input 
@@ -29,7 +29,7 @@ const ProductContainer = () => {
                 InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
             </VStack>
             <View>
-                <Text>Product Container</Text>
+               
                 <View style={styles.listContainer} >
                     <FlatList 
                     //    horizontal
@@ -42,7 +42,7 @@ const ProductContainer = () => {
                     />
                 </View>
             </View>
-        </Container>
+        </Center>
         </ScrollView>
     )
 }
