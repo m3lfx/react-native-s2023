@@ -21,7 +21,7 @@ const ProductContainer = () => {
             <FlatList 
                 horizontal
                 data={products}
-                renderItem={({item}) => <ProductList key={item.id}/>}
+                renderItem={({item}) => <ProductList key={item.id} item={item}/>}
                 keyExtractor={item => item.name}
             />
         </View>
