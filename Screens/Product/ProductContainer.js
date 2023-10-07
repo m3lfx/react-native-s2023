@@ -9,6 +9,8 @@ import CategoryFilter from "./CategoryFilter";
 const data = require('../../assets/data/products.json')
 const productCategories = require('../../assets/data/categories.json')
 
+var { width, height } = Dimensions.get("window");
+
 const ProductContainer = () => {
     const [products, setProducts] = useState([])
     const [productsFiltered, setProductsFiltered] = useState([]);
@@ -16,6 +18,7 @@ const ProductContainer = () => {
     const [categories, setCategories] = useState([]);
     const [active, setActive] = useState([]);
     const [initialState, setInitialState] = useState([])
+    const [productsCtg, setProductsCtg] = useState([])
     useEffect(() => {
         setProducts(data);
         setProductsFiltered(data);
@@ -29,7 +32,8 @@ const ProductContainer = () => {
             setFocus();
             setCategories([])
             setActive()
-            setInitialState();
+            setInitialState([])
+            setProductsCtg([])
         }
     }, [])
 
@@ -47,6 +51,19 @@ const ProductContainer = () => {
     const onBlur = () => {
         setFocus(false);
     }
+
+    const changeCtg = (ctg) => {
+        {
+            ctg === "all"
+                ? [setProductsCtg(initialState), setActive(true)]
+                : [
+                    setProductsCtg(
+                        products.filter((i) => i.category.$oid === ctg),
+                        setActive(true)
+                    ),
+                ];
+        }
+    };
     console.log(productsFiltered)
 
     return (
@@ -76,16 +93,31 @@ const ProductContainer = () => {
 
                 <ScrollView>
                     <View >
-                        <CategoryFilter />
+                        <CategoryFilter
+                            categories={categories}
+                            categoryFilter={changeCtg}
+                            productsCtg={productsCtg}
+                            active={active}
+                            setActive={setActive}
+                        />
                     </View>
-                    <FlatList
-                        //    horizontal
-                        columnWrapperStyle={{ justifyContent: 'space-between' }}
-                        numColumns={2}
-                        data={products}
-                        renderItem={({ item }) => <ProductList key={item._id.$oid} item={item} />}
-                        keyExtractor={item => item._id.$oid}
-                    />
+                    {productsCtg.length > 0 ? (
+                        <View style={styles.listContainer}>
+                            {productsCtg.map((item) => {
+                                return (
+                                    <ProductList
+                                        // navigation={props.navigation}
+                                        key={item._id.$oid}
+                                        item={item}
+                                    />
+                                )
+                            })}
+                        </View>
+                    ) : (
+                        <View style={[styles.center, { height: height / 2 }]}>
+                            <Text>No products found</Text>
+                        </View>
+                    )}
 
                 </ScrollView>)}
 
