@@ -2,6 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NativeBaseProvider, extendTheme } from "native-base";
 
+import { NavigationContainer } from '@react-navigation/native'
+import Main from './Navigators/Main'
+
 import ProductContainer from './Screens/Product/ProductContainer';
 import Header from './Shared/Header';
 
