@@ -35,8 +35,9 @@ const Cart = (props) => {
         }} _light={{
             bg: 'white'
         }}
+        
         >
-            <Box pl="4" pr="5" py="2" bg="white">
+            <Box pl="4" pr="5" py="2" bg="white" keyExtractor={item => item.id}>
                 <HStack alignItems="center" space={3}>
                     <Avatar size="48px" source={{
                         uri: item.image ?
@@ -58,30 +59,27 @@ const Cart = (props) => {
                 </HStack>
             </Box>
         </TouchableHighlight>;
-   
 
-    const renderHiddenItem = (cartItems) => 
+
+    const renderHiddenItem = (cartItems) =>
         <TouchableOpacity
             onPress={() => dispatch(actions.removeFromCart(cartItems.item))}
         >
-            {/* <View style={styles.hiddenContainer}  > */}
-                {/* <Center style={styles.hiddenContainer}> */}
-                    <VStack alignItems="center" style={styles.hiddenButton} >
-                        <View >
-                            <Icon name="trash" color={"white"} size={30} bg="red" />
-                            <Text color="white" fontSize="xs" fontWeight="medium">
-                                Delete
-                            </Text>
-                        </View>
-                    </VStack>
-                {/* </Center> */}
-            {/* </View> */}
+
+            <VStack alignItems="center" style={styles.hiddenButton} >
+                <View >
+                    <Icon name="trash" color={"white"} size={30} bg="red" />
+                    <Text color="white" fontSize="xs" fontWeight="medium">
+                        Delete
+                    </Text>
+                </View>
+            </VStack>
+
         </TouchableOpacity>;
 
     // console.log(cartItems)
 
     return (
-
         <>
             {cartItems.length > 0 ? (
                 <Box bg="white" safeArea flex="1" width="100%" >
@@ -94,6 +92,7 @@ const Cart = (props) => {
                         rightOpenValue={-150}
                         previewOpenValue={-100}
                         previewOpenDelay={3000}
+                        closeOnRowBeginSwipe
                     />
                 </Box>
             ) : (
