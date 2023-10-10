@@ -3,9 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NativeBaseProvider, extendTheme } from "native-base";
 
 import { NavigationContainer } from '@react-navigation/native'
-
-
-import ProductContainer from './Screens/Product/ProductContainer';
+import { Provider } from "react-redux";
+import store from "./Redux/store";
 import Header from './Shared/Header';
 import Main from './Navigators/Main';
 const newColorTheme = {
@@ -18,15 +17,16 @@ const newColorTheme = {
 const theme = extendTheme({ colors: newColorTheme });
 export default function App() {
   return (
-    
+    <Provider store={store}>
       <NativeBaseProvider theme={theme}>
         <NavigationContainer>
           <Header />
           <Main />
-          
+
         </NavigationContainer>
       </NativeBaseProvider>
-    
+    </Provider>
+
   );
 }
 
