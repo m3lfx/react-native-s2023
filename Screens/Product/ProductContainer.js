@@ -24,9 +24,6 @@ const ProductContainer = () => {
   const [initialState, setInitialState] = useState([])
   const [productsCtg, setProductsCtg] = useState([])
   
-
- 
-
   useFocusEffect((
     useCallback(
         () => {
@@ -91,7 +88,7 @@ const ProductContainer = () => {
         ? [setProductsCtg(initialState), setActive(true)]
         : [
           setProductsCtg(
-            products.filter((i) => i.category !== null && i.category._id === ctg  ),
+            products.filter((i) => i.category !== null && i.category.id === ctg  ),
             setActive(true)
           ),
         ];
