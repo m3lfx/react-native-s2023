@@ -9,12 +9,12 @@ var { width, height } = Dimensions.get("window");
 
 const Confirm = (props) => {
     const confirm = props.route.params ? props.route.params : null;
-    // console.log(confirm.order.order.orderItems)
+    console.log(confirm)
     return (
         <Center width={"90%"}>
             <Text style={styles.title}>items</Text>
 
-            {confirm.order.order.orderItems.map((item) => {
+            {confirm && confirm.order.orderItems.map((item) => {
                 return (
                     // console.log(x)
                     <HStack space={[2, 3]} justifyContent="space-between">
