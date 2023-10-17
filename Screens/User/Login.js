@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {View, Text, StyleSheet } from 'react-native'
 import FormContainer from "../../Shared/Form/FormContainer";
 import { Button } from "native-base";
+import Error from "../../Shared/Error";
 
 const Login = (props) => {
 
@@ -25,7 +26,7 @@ const Login = (props) => {
       };
 
     return (
-       <FormContainer>
+       <FormContainer >
             <Input 
                 placeholder={"Enter email"}
                 name={"email"}
@@ -42,7 +43,8 @@ const Login = (props) => {
                 onChangeText={(text)=> setPassword(text)}
             />
             <View style={styles.buttonGroup}>
-                <Button variant={"ghost"}>Login</Button>
+            {error ? <Error message={error} /> : null}
+                <Button variant={"ghost"} onPress={() => handleSubmit()}>Login</Button>
             </View>
             <View style={[{marginTop:40} ,styles.buttonGroup]}>
                 <Text style={styles.middleText}>Dont' Have an Account yet?</Text>
