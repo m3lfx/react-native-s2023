@@ -8,6 +8,8 @@ import Banner from "../../Shared/Banner";
 import CategoryFilter from "./CategoryFilter";
 const data = require('../../assets/data/products.json')
 const productCategories = require('../../assets/data/categories.json')
+import baseURL from "../../assets/common/baseurl";
+import axios from 'axios'
 
 var { width, height } = Dimensions.get("window");
 
@@ -20,22 +22,59 @@ const ProductContainer = () => {
     const [initialState, setInitialState] = useState([])
     const [productsCtg, setProductsCtg] = useState([])
     useEffect(() => {
-        setProducts(data);
-        setProductsFiltered(data);
         setFocus(false);
-        setCategories(productCategories)
         setActive(-1)
-        setInitialState(data);
+        axios
+          .get(`${baseURL}products`)
+          .then((res) => {
+            console.log(res.data)
+            setProducts(res.data);
+            setProductsFiltered(res.data);
+            setProductsCtg(res.data);
+            setInitialState(res.data);
+            setProductsCtg(res.data)
+            // setLoading(false)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    
+        axios
+          .get(`${baseURL}categories`)
+          .then((res) => {
+            setCategories(res.data)
+          })
+          .catch((error) => {
+            console.log('Api call error')
+          })
+    
         return () => {
-            setProducts([])
-            setProductsFiltered([]);
-            setFocus();
-            setCategories([])
-            setActive()
-            setInitialState([])
-            setProductsCtg([])
-        }
-    }, [])
+          setProducts([]);
+          setProductsFiltered([]);
+          setFocus();
+          setCategories([]);
+          setActive();
+          setInitialState();
+        };
+    
+      }, [])
+    // useEffect(() => {
+    //     setProducts(data);
+    //     setProductsFiltered(data);
+    //     setFocus(false);
+    //     setCategories(productCategories)
+    //     setActive(-1)
+    //     setInitialState(data);
+    //     return () => {
+    //         setProducts([])
+    //         setProductsFiltered([]);
+    //         setFocus();
+    //         setCategories([])
+    //         setActive()
+    //         setInitialState([])
+    //         setProductsCtg([])
+    //     }
+    // }, [])
 
     const searchProduct = (text) => {
         console.log(text)
