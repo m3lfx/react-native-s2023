@@ -32,7 +32,7 @@ const ProductContainer = () => {
             setProductsFiltered(res.data);
             setProductsCtg(res.data);
             setInitialState(res.data);
-            setProductsCtg(res.data)
+        
             // setLoading(false)
           })
           .catch((error) => {
