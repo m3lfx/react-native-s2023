@@ -97,7 +97,7 @@ const ProductContainer = () => {
                 ? [setProductsCtg(initialState), setActive(true)]
                 : [
                     setProductsCtg(
-                        products.filter((i) => i.category.$oid === ctg),
+                        products.filter((i) => i.category._id === ctg),
                         setActive(true)
                     ),
                 ];
@@ -149,7 +149,7 @@ const ProductContainer = () => {
                                 return (
                                     <ProductList
                                         // navigation={props.navigation}
-                                        key={item._id.$oid}
+                                        key={item._id}
                                         item={item}
                                     />
                                 )
@@ -184,11 +184,22 @@ const ProductContainer = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+      flexWrap: "wrap",
+      backgroundColor: "gainsboro",
     },
-});
+    listContainer: {
+      //   height: "100%",
+      flex: 1,
+      flexDirection: "row",
+      alignItems: "flex-start",
+      flexWrap: "wrap",
+      backgroundColor: "gainsboro",
+    },
+    center: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 1
+    }
+  });
 
 export default ProductContainer;
