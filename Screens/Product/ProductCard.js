@@ -41,7 +41,8 @@ const ProductCard = (props) => {
                         title={'Add'}
                         color={'green'}
                         onPress={() => {
-                            dispatch(actions.addToCart({ ...props, quantity: 1, })), Toast.show({
+                            dispatch(actions.addToCart({ ...props, quantity: 1, })), 
+                            Toast.show({
                                 topOffset: 60,
                                 type: "success",
                                 text1: `${name} added to Cart`,
