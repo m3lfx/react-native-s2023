@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { View, Button, Pressable, FlatList, TouchableOpacity, Dimensions,  } from 'react-native'
-
-
 import {
     Container,
     Text,
@@ -36,10 +34,8 @@ const paymentCards = [
 ]
 
 const Payment = (props) => {
-
-    // const order = props.route.params.order;
+    const order = props.route.params.order ? props.route.params.order : null ;
     // console.log("order", order)
-
     const [selected, setSelected] = useState('');
     const [card, setCard] = useState('');
     const navigation = useNavigation()
