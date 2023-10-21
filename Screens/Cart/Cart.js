@@ -20,6 +20,7 @@ import {
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Icon from "react-native-vector-icons/FontAwesome";
 var { height, width } = Dimensions.get("window");
+import EasyButton from "../../Shared/StyledComponents/EasyButton"
 
 const Cart = (props) => {
     const navigation = useNavigation()
@@ -35,7 +36,7 @@ const Cart = (props) => {
         }} _light={{
             bg: 'white'
         }}
-        
+
         >
             <Box pl="4" pr="5" py="2" bg="white" keyExtractor={item => item.id}>
                 <HStack alignItems="center" space={3}>
@@ -107,13 +108,28 @@ const Cart = (props) => {
                     <Text style={styles.price}>$ {total.toFixed(2)}</Text>
                 </HStack>
                 <HStack justifyContent="space-between">
-                    <Button alignItems="center" onPress={() => dispatch(actions.clearCart())} > Clear</Button>
+                    <EasyButton
+                        danger
+                        medium
+                        alignItems="center"
+                        onPress={() => dispatch(actions.clearCart())}
+                    >
+                        <Text style={{ color: 'white' }}>Clear</Text>
+                    </EasyButton>
+                    {/* <Button alignItems="center" onPress={() => dispatch(actions.clearCart())} > Clear</Button> */}
                 </HStack>
                 <HStack justifyContent="space-between">
                     {/* <Button alignItems="center" colorScheme="primary">Check Out</Button> */}
-                    <Button alignItems="center" colorScheme="primary" onPress={() => navigation.navigate('Checkout')}>Check Out</Button>
+                    <EasyButton
+                        secondary
+                        medium
+                        onPress={() => navigation.navigate('Checkout')}
+                    >
+                        <Text style={{ color: 'white' }}>Checkout</Text>
+                    </EasyButton>
+                    {/* <Button alignItems="center" colorScheme="primary" onPress={() => navigation.navigate('Checkout')}>Check Out</Button> */}
                 </HStack>
-            </VStack>
+            </VStack >
         </>
 
     );
