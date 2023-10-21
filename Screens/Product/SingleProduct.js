@@ -1,29 +1,37 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Image, View, StyleSheet, Text, ScrollView, Button } from "react-native";
-import {Left, Right, Container, H1, Center} from 'native-base'
+import { Left, Right, Container, H1, Center } from 'native-base'
+import EasyButton from "../../Shared/StyledComponents/EasyButton"
 
-const SingleProduct = ({route}) => {
+const SingleProduct = ({ route }) => {
     const [item, setItem] = useState(route.params.item);
     console.log(item)
     const [availability, setAvailability] = useState('')
 
     return (
         <Center flexGrow={1}>
-            <ScrollView style={{marginBottom: 80, padding: 5}}>
+            <ScrollView style={{ marginBottom: 80, padding: 5 }}>
                 <View>
                     {/* <Text>{item.name}</Text> */}
-                    <Image 
+                    <Image
                         source={{
                             uri: item.image ? item.image : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png'
                         }}
                         resizeMode="contain"
                         style={styles.image}
                     />
-                        
+
                 </View>
+                <EasyButton
+                    primary
+                    medium
+                >
+
+                    <Text style={{ color: "white" }}> Add</Text>
+                </EasyButton>
             </ScrollView>
-        
-        </Center>
+
+        </Center >
     )
 }
 
@@ -31,7 +39,7 @@ const styles = StyleSheet.create({
     container: {
         position: 'relative',
         height: '100%',
-    
+
     },
     imageContainer: {
         backgroundColor: 'white',
