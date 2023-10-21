@@ -1,18 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { Image, View, StyleSheet, Text, ScrollView, Button } from "react-native";
-import { Left, Right, Container, H1, Center } from 'native-base'
+import { Left, Right, Container, H1, Center, Heading } from 'native-base'
 import EasyButton from "../../Shared/StyledComponents/EasyButton"
-
+import TrafficLight from '../../Shared/StyledComponents/TrafficLight'
 const SingleProduct = ({ route }) => {
     const [item, setItem] = useState(route.params.item);
     console.log(item)
     const [availability, setAvailability] = useState('')
+    const [availabilityText, setAvailabilityText] = useState("")
+    useEffect(() => {
+        if (item.countInStock == 0) {
+            setAvailability(<TrafficLight unavailable></TrafficLight>);
+            setAvailabilityText("Unvailable")
+        } else if (item.countInStock <= 5) {
+            setAvailability(<TrafficLight limited></TrafficLight>);
+            setAvailabilityText("Limited Stock")
+        } else {
+            setAvailability(<TrafficLight available></TrafficLight>);
+            setAvailabilityText("Available")
+        }
 
+        return () => {
+            setAvailability(null);
+            setAvailabilityText("");
+        }
+    }, [])
     return (
         <Center flexGrow={1}>
             <ScrollView style={{ marginBottom: 80, padding: 5 }}>
-                <View>
-                    {/* <Text>{item.name}</Text> */}
+                {/* <View>
+                    
                     <Image
                         source={{
                             uri: item.image ? item.image : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png'
@@ -21,6 +38,19 @@ const SingleProduct = ({ route }) => {
                         style={styles.image}
                     />
 
+                </View> */}
+                <View style={styles.contentContainer}>
+                    <Heading style={styles.contentHeader} size='xl'>{item.name}</Heading>
+                    <Text style={styles.contentText}>{item.brand}</Text>
+                </View>
+                <View style={styles.availabilityContainer}>
+                    <View style={styles.availability}>
+                        <Text style={{ marginRight: 10 }}>
+                            Availability: {availabilityText}
+                        </Text>
+                        {availability}
+                    </View>
+                    <Text>{item.description}</Text>
                 </View>
                 <EasyButton
                     primary
