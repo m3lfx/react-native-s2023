@@ -84,15 +84,23 @@ const Products = (props) => {
             </View>
         )
     }
-
-
+    const searchProduct = (text) => {
+        if (text === "") {
+            setProductFilter(productList)
+        }
+        setProductFilter(
+            productList.filter((i) => 
+                i.name.toLowerCase().includes(text.toLowerCase())
+            )
+        )
+    }
 
     return (
         <Box flex={1}>
             <Searchbar width="80%"
                 placeholder="Search"
-            //   onChangeText={onChangeSearch}
-            //   value={searchQuery}
+                containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+                onChangeText={(text) => searchProduct(text)}
             />
             <FlatList
                 data={productFilter}
