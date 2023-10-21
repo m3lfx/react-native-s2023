@@ -7,10 +7,10 @@ import {
     StyleSheet,
     Dimensions,
     Container,
-   
+
     Button
 } from "react-native";
-import { Input, VStack, Heading,Box } from "native-base"
+import { Input, VStack, Heading, Box } from "native-base"
 import Icon from "react-native-vector-icons/FontAwesome"
 import { useFocusEffect } from "@react-navigation/native"
 import { Searchbar } from 'react-native-paper';
@@ -19,7 +19,7 @@ import ListItem from "./ListItem"
 import axios from "axios"
 import baseURL from "../../assets/common/baseurl";
 import AsyncStorage from '@react-native-async-storage/async-storage'
-  
+
 
 var { height, width } = Dimensions.get("window")
 
@@ -39,14 +39,14 @@ const Products = (props) => {
                 AsyncStorage.getItem("jwt")
                     .then((res) => {
                         setToken(res)
-                       
+
                     })
                     .catch((error) => console.log(error))
 
                 axios
                     .get(`${baseURL}products`)
                     .then((res) => {
-                        // console.log(res.data)
+                        console.log(res.data)
                         setProductList(res.data);
                         setProductFilter(res.data);
                         setLoading(false);
@@ -65,27 +65,27 @@ const Products = (props) => {
 
 
     return (
-       <Box flex={1}>
-        <Searchbar width="80%"
-            placeholder="Search"
-        //   onChangeText={onChangeSearch}
-        //   value={searchQuery}
-        />
-        <FlatList 
-            data={productFilter}
-            
-            renderItem={({ item, index }) => (
-                
-                <ListItem
-                            item={item}
-                            index={index}
-                            // deleteProduct={deleteProduct}
+        <Box flex={1}>
+            <Searchbar width="80%"
+                placeholder="Search"
+            //   onChangeText={onChangeSearch}
+            //   value={searchQuery}
+            />
+            <FlatList
+                data={productFilter}
 
-                        />
-            )}
-            keyExtractor={(item) => item.id}
-          />
-       </Box>     
+                renderItem={({ item, index }) => (
+
+                    <ListItem
+                        item={item}
+                        index={index}
+                    // deleteProduct={deleteProduct}
+
+                    />
+                )}
+                keyExtractor={(item) => item.id}
+            />
+        </Box>
     );
 }
 

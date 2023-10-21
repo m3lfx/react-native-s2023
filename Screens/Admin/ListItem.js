@@ -16,6 +16,7 @@ import Icon from "react-native-vector-icons/FontAwesome"
 var { width } = Dimensions.get("window");
 
 const ListItem = ({item, index}) => {
+    
     return(
         <View>
             <TouchableOpacity
@@ -28,14 +29,14 @@ const ListItem = ({item, index}) => {
                     source={{
                         uri: item.image
                         ? item.image
-                        : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png'
+                        : null
                     }}
                     resizeMode="contain"
                     style={styles.image}
                 />
                 <Text style={styles.item}>{item.brand}</Text>
-                <Text style={styles.item} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
-                <Text style={styles.item} numberOfLines={1} ellipsizeMode="tail">{item.category.name}</Text>
+                <Text style={styles.item} numberOfLines={1} ellipsizeMode="tail">{item.name ? item.name : null}</Text>
+                <Text style={styles.item} numberOfLines={1} ellipsizeMode="tail">{item.category ? item.category.name : null}</Text>
                 <Text style={styles.item}>$ {item.price}</Text>
             </TouchableOpacity>
         </View>
