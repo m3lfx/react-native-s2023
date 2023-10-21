@@ -11,25 +11,68 @@ import {
     Modal
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"
-
+import { useNavigation } from "@react-navigation/native"
 
 var { width } = Dimensions.get("window");
 
-const ListItem = ({item, index}) => {
-    
-    return(
+const ListItem = ({ item, index }) => {
+    const [modalVisible, setModalVisible] = useState(false)
+    const navigation = useNavigation()
+
+    return (
         <View>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(false)
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <TouchableOpacity
+                            underlayColor="#E8E8E8"
+                            onPress={() => {
+                                setModalVisible(false)
+                            }}
+                            style={{
+                                alignSelf: "flex-end",
+                                position: "absolute",
+                                top: 5,
+                                right: 10
+                            }}
+                        >
+                            <Icon name="close" size={20} />
+                        </TouchableOpacity>
+
+                        <Button
+                            onPress={() => [navigation.navigate("ProductForm", { item }),
+                            setModalVisible(false)
+                            ]}
+                            title="Edit"
+                        >
+                            <Text style={styles.textStyle}>Edit</Text>
+                        </Button>
+
+                    </View>
+                </View>
+            </Modal>
             <TouchableOpacity
-               
+                onPress={() => {
+                    navigation.navigate("Product Detail", { item })
+                }}
+                onLongPress={() => setModalVisible(true)}
                 style={[styles.container, {
                     backgroundColor: index % 2 == 0 ? "white" : "gainsboro"
                 }]}
+                
             >
-                <Image 
+                <Image
                     source={{
                         uri: item.image
-                        ? item.image
-                        : null
+                            ? item.image
+                            : null
                     }}
                     resizeMode="contain"
                     style={styles.image}
