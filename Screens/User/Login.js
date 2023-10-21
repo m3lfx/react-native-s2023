@@ -8,7 +8,7 @@ import AuthGlobal from '../../Context/Store/AuthGlobal'
 import { loginUser } from '../../Context/Actions/Auth.actions'
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import EasyButton from "../../Shared/StyledComponents/EasyButton";
 
 const Login = (props) => {
 
@@ -64,11 +64,24 @@ const Login = (props) => {
             />
             <View style={styles.buttonGroup}>
                 {error ? <Error message={error} /> : null}
-                <Button variant={"ghost"} onPress={() => handleSubmit()}>Login</Button>
+                <EasyButton
+                    large
+                    primary
+                    onPress={() => handleSubmit()}
+                ><Text style={{ color: "white" }}>Login</Text>
+                </EasyButton>
+                {/* <Button variant={"ghost"} onPress={() => handleSubmit()}>Login</Button> */}
             </View>
             <View style={[{ marginTop: 40 }, styles.buttonGroup]}>
                 <Text style={styles.middleText}>Dont' Have an Account yet?</Text>
-                <Button variant={"ghost"} onPress={() => props.navigation.navigate("Register")} > Register</Button>
+                <EasyButton
+                    large
+                    secondary
+                    onPress={() => navigation.navigate("Register")}
+                >
+                    <Text style={{ color: "white" }}>Register</Text>
+                </EasyButton>
+                {/* <Button variant={"ghost"} onPress={() => props.navigation.navigate("Register")} > Register</Button> */}
             </View>
         </FormContainer>
     )
