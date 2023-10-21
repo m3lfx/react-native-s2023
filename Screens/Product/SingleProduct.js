@@ -28,7 +28,7 @@ const SingleProduct = ({ route }) => {
     return (
         <Center flexGrow={1}>
             <ScrollView style={{ marginBottom: 80, padding: 5 }}>
-                {/* <View>
+                <View>
                     
                     <Image
                         source={{
@@ -38,7 +38,7 @@ const SingleProduct = ({ route }) => {
                         style={styles.image}
                     />
 
-                </View> */}
+                </View> 
                 <View style={styles.contentContainer}>
                     <Heading style={styles.contentHeader} size='xl'>{item.name}</Heading>
                     <Text style={styles.contentText}>{item.brand}</Text>

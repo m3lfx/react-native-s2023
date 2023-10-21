@@ -32,6 +32,18 @@ const Products = (props) => {
     const [loading, setLoading] = useState(true);
     const [token, setToken] = useState('');
 
+    const deleteProduct = (id) => {
+        axios
+            .delete(`${baseURL}products/${id}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((res) => {
+                const products = productFilter.filter((item) => item.id !== id)
+                setProductFilter(products)
+            })
+            .catch((error) => console.log(error));
+    }
+
     useFocusEffect(
         useCallback(
             () => {
@@ -63,23 +75,23 @@ const Products = (props) => {
     )
 
     const ListHeader = () => {
-        return(
+        return (
             <View
                 elevation={1}
                 style={styles.listHeader}
             >
                 <View style={styles.headerItem}></View>
                 <View style={styles.headerItem}>
-                    <Text style={{ fontWeight: '600'}}>Brand</Text>
+                    <Text style={{ fontWeight: '600' }}>Brand</Text>
                 </View>
                 <View style={styles.headerItem}>
-                    <Text style={{ fontWeight: '600'}}>Name</Text>
+                    <Text style={{ fontWeight: '600' }}>Name</Text>
                 </View>
                 <View style={styles.headerItem}>
-                    <Text style={{ fontWeight: '600'}}>Category</Text>
+                    <Text style={{ fontWeight: '600' }}>Category</Text>
                 </View>
                 <View style={styles.headerItem}>
-                    <Text style={{ fontWeight: '600'}}>Price</Text>
+                    <Text style={{ fontWeight: '600' }}>Price</Text>
                 </View>
             </View>
         )
@@ -89,7 +101,7 @@ const Products = (props) => {
             setProductFilter(productList)
         }
         setProductFilter(
-            productList.filter((i) => 
+            productList.filter((i) =>
                 i.name.toLowerCase().includes(text.toLowerCase())
             )
         )
@@ -99,7 +111,7 @@ const Products = (props) => {
         <Box flex={1}>
             <Searchbar width="80%"
                 placeholder="Search"
-                containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+                containerStyle={{ backgroundColor: 'white', borderWidth: 1, borderRadius: 5 }}
                 onChangeText={(text) => searchProduct(text)}
             />
             <FlatList
@@ -111,7 +123,7 @@ const Products = (props) => {
                     <ListItem
                         item={item}
                         index={index}
-                    // deleteProduct={deleteProduct}
+                        deleteProduct={deleteProduct}
 
                     />
                 )}

@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native"
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
 var { width } = Dimensions.get("window");
 
-const ListItem = ({ item, index }) => {
+const ListItem = ({ item, index, deleteProduct }) => {
     const [modalVisible, setModalVisible] = useState(false)
     const navigation = useNavigation()
 
@@ -59,7 +59,7 @@ const ListItem = ({ item, index }) => {
                         <EasyButton
                             medium
                             danger
-                            // onPress={() => [deleteProduct(item._id), setModalVisible(false)]}
+                            onPress={() => [deleteProduct(item._id), setModalVisible(false)]}
                             title="delete"
                         >
                             <Text style={styles.textStyle}>Delete</Text>
