@@ -62,6 +62,29 @@ const Products = (props) => {
         )
     )
 
+    const ListHeader = () => {
+        return(
+            <View
+                elevation={1}
+                style={styles.listHeader}
+            >
+                <View style={styles.headerItem}></View>
+                <View style={styles.headerItem}>
+                    <Text style={{ fontWeight: '600'}}>Brand</Text>
+                </View>
+                <View style={styles.headerItem}>
+                    <Text style={{ fontWeight: '600'}}>Name</Text>
+                </View>
+                <View style={styles.headerItem}>
+                    <Text style={{ fontWeight: '600'}}>Category</Text>
+                </View>
+                <View style={styles.headerItem}>
+                    <Text style={{ fontWeight: '600'}}>Price</Text>
+                </View>
+            </View>
+        )
+    }
+
 
 
     return (
@@ -73,6 +96,7 @@ const Products = (props) => {
             />
             <FlatList
                 data={productFilter}
+                ListHeaderComponent={ListHeader}
 
                 renderItem={({ item, index }) => (
 
