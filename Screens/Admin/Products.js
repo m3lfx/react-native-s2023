@@ -7,7 +7,7 @@ import {
     StyleSheet,
     Dimensions,
     Container,
-
+    RefreshControl,
     Button
 } from "react-native";
 import { Input, VStack, Heading, Box } from "native-base"
@@ -22,6 +22,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 var { height, width } = Dimensions.get("window")
+import EasyButton from "../../Shared/StyledComponents/EasyButton"
 
 
 
@@ -31,6 +32,7 @@ const Products = (props) => {
     const [productFilter, setProductFilter] = useState();
     const [loading, setLoading] = useState(true);
     const [token, setToken] = useState('');
+    const [refreshing, setRefreshing] = useState(false);
 
     const deleteProduct = (id) => {
         axios
@@ -43,6 +45,20 @@ const Products = (props) => {
             })
             .catch((error) => console.log(error));
     }
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        setTimeout(() => {
+            axios
+                .get(`${baseURL}products`)
+                .then((res) => {
+                    // console.log(res.data)
+                    setProductList(res.data);
+                    setProductFilter(res.data);
+                    setLoading(false);
+                })
+            setRefreshing(false);
+        }, 2000);
+    }, []);
 
     useFocusEffect(
         useCallback(
@@ -109,6 +125,32 @@ const Products = (props) => {
 
     return (
         <Box flex={1}>
+            <View style={styles.buttonContainer}>
+                <EasyButton
+                    secondary
+                    medium
+                    onPress={() => props.navigation.navigate("Orders")}
+                >
+                    <Icon name="shopping-bag" size={18} color="white" />
+                    <Text style={styles.buttonText}>Orders</Text>
+                </EasyButton>
+                <EasyButton
+                    secondary
+                    medium
+                    onPress={() => props.navigation.navigate("ProductForm")}
+                >
+                    <Icon name="plus" size={18} color="white" />
+                    <Text style={styles.buttonText}>Products</Text>
+                </EasyButton>
+                <EasyButton
+                    secondary
+                    medium
+                    onPress={() => props.navigation.navigate("Categories")}
+                >
+                    <Icon name="plus" size={18} color="white" />
+                    <Text style={styles.buttonText}>Categories</Text>
+                </EasyButton>
+            </View>
             <Searchbar width="80%"
                 placeholder="Search"
                 containerStyle={{ backgroundColor: 'white', borderWidth: 1, borderRadius: 5 }}
@@ -117,7 +159,9 @@ const Products = (props) => {
             <FlatList
                 data={productFilter}
                 ListHeaderComponent={ListHeader}
-
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                }
                 renderItem={({ item, index }) => (
 
                     <ListItem
