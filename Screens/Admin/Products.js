@@ -23,6 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 var { height, width } = Dimensions.get("window")
 import EasyButton from "../../Shared/StyledComponents/EasyButton"
+import { useNavigation } from "@react-navigation/native"
 
 
 
@@ -33,7 +34,7 @@ const Products = (props) => {
     const [loading, setLoading] = useState(true);
     const [token, setToken] = useState('');
     const [refreshing, setRefreshing] = useState(false);
-
+const navigation = useNavigation()
     const deleteProduct = (id) => {
         axios
             .delete(`${baseURL}products/${id}`, {
@@ -129,7 +130,7 @@ const Products = (props) => {
                 <EasyButton
                     secondary
                     medium
-                    onPress={() => props.navigation.navigate("Orders")}
+                    onPress={() => navigation.navigate("Orders")}
                 >
                     <Icon name="shopping-bag" size={18} color="white" />
                     <Text style={styles.buttonText}>Orders</Text>
@@ -137,7 +138,7 @@ const Products = (props) => {
                 <EasyButton
                     secondary
                     medium
-                    onPress={() => props.navigation.navigate("ProductForm")}
+                    onPress={() => navigation.navigate("ProductForm")}
                 >
                     <Icon name="plus" size={18} color="white" />
                     <Text style={styles.buttonText}>Products</Text>
@@ -145,7 +146,7 @@ const Products = (props) => {
                 <EasyButton
                     secondary
                     medium
-                    onPress={() => props.navigation.navigate("Categories")}
+                    onPress={() => navigation.navigate("Categories")}
                 >
                     <Icon name="plus" size={18} color="white" />
                     <Text style={styles.buttonText}>Categories</Text>
