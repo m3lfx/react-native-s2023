@@ -72,15 +72,15 @@ const Confirm = (props) => {
           <View style={{ borderWidth: 1, borderColor: "orange" }}>
             <Text style={styles.title}>Shipping to:</Text>
             <View style={{ padding: 8 }}>
-              <Text>Address: {finalOrder.order.order.shippingAddress1}</Text>
-              <Text>Address2: {finalOrder.order.order.shippingAddress2}</Text>
-              <Text>City: {finalOrder.order.order.city}</Text>
-              <Text>Zip Code: {finalOrder.order.order.zip}</Text>
-              <Text>Country: {finalOrder.order.order.country}</Text>
+              <Text>Address: {finalOrder.order.shippingAddress1}</Text>
+              <Text>Address2: {finalOrder.order.shippingAddress2}</Text>
+              <Text>City: {finalOrder.order.city}</Text>
+              <Text>Zip Code: {finalOrder.order.zip}</Text>
+              <Text>Country: {finalOrder.order.country}</Text>
             </View>
             <Text style={styles.title}>items</Text>
 
-            {finalOrder.order.order.orderItems.map((item) => {
+            {finalOrder.order.orderItems.map((item) => {
 
               return (
 

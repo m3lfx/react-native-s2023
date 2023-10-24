@@ -13,6 +13,7 @@ import AuthGlobal from "../../../Context/Store/AuthGlobal"
 const countries = require("../../../assets/countries.json");
 
 const Checkout = (props) => {
+    const [user, setUser] = useState('')
     const [orderItems, setOrderItems] = useState([])
     const [address, setAddress] = useState('')
     const [address2, setAddress2] = useState('')
@@ -20,11 +21,10 @@ const Checkout = (props) => {
     const [zip, setZip] = useState('')
     const [country, setCountry] = useState('')
     const [phone, setPhone] = useState('')
-    const [user, setUser] = useState('')
-    const context = useContext(AuthGlobal);
 
     const navigation = useNavigation()
     const cartItems = useSelector(state => state.cartItems)
+    const context = useContext(AuthGlobal);
 
     useEffect(() => {
         setOrderItems(cartItems)
@@ -61,7 +61,7 @@ const Checkout = (props) => {
         console.log("ship", order)
         navigation.navigate("Payment", { order: order })
     }
-
+    console.log(orderItems)
     return (
         <KeyboardAwareScrollView
             viewIsInsideTabBar={true}
