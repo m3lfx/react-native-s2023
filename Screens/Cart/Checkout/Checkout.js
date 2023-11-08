@@ -31,7 +31,7 @@ const Checkout = (props) => {
         if(context.stateUser.isAuthenticated) {
             setUser(context.stateUser.user.userId)
         } else {
-            navigation.navigate("Cart");
+            navigation.navigate("User",{ screen: 'Login' });
             Toast.show({
                 topOffset: 60,
                 type: "error",

@@ -8,7 +8,7 @@ function MyStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name='Home'
+                name='Product'
                 component={ProductContainer}
                 options={{
                     headerShown: false,

@@ -5,7 +5,7 @@ import EasyButton from "../../Shared/StyledComponents/EasyButton"
 import TrafficLight from '../../Shared/StyledComponents/TrafficLight'
 const SingleProduct = ({ route }) => {
     const [item, setItem] = useState(route.params.item);
-    console.log(item)
+    // console.log(item)
     const [availability, setAvailability] = useState('')
     const [availabilityText, setAvailabilityText] = useState("")
     useEffect(() => {

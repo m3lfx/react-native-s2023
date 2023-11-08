@@ -94,7 +94,7 @@ const ProductContainer = () => {
         ];
     }
   };
-  console.log(productsCtg)
+  // console.log(productsCtg)
 
   return (
     // <NativeBaseProvider theme={theme}>

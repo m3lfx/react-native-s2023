@@ -17,7 +17,7 @@ const Orders = (props) => {
             },[],
         )
     )
-    console.log(`${baseURL}orders`)
+    // console.log(`${baseURL}orders`)
     const getOrders = () => {
         axios.get(`${baseURL}orders`)
         .then((res) => {
@@ -26,7 +26,7 @@ const Orders = (props) => {
         })
         .catch((error) => console.log(error))
     }
-    console.log(orderList)
+    // console.log(orderList)
     return (
         
         <View>

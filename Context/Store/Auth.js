@@ -7,7 +7,7 @@ import { setCurrentUser } from "../Actions/Auth.actions";
 import AuthGlobal from './AuthGlobal'
 
 const Auth = props => {
-    console.log(props.children)
+    // console.log(props.children)
     const [stateUser, dispatch] = useReducer(authReducer, {
         isAuthenticated: null,
         user: {}

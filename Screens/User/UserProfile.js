@@ -26,7 +26,7 @@ const UserProfile = (props) => {
             ) {
                 navigation.navigate("Login")
             }
-            console.log(context.stateUser.user)
+            // console.log(context.stateUser.user)
             AsyncStorage.getItem("jwt")
                 .then((res) => {
                     axios

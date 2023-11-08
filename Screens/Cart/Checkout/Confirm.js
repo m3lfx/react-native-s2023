@@ -18,7 +18,7 @@ const Confirm = (props) => {
   const [token, setToken] = useState();
   // const confirm = props.route.params;
   const finalOrder = props.route.params;
-  console.log("order", finalOrder)
+  // console.log("order", finalOrder)
   const dispatch = useDispatch()
   let navigation = useNavigation()
   

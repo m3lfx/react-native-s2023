@@ -5,7 +5,7 @@ import { Text, Box, HStack, Avatar, Thumbnail, Body } from "native-base";
 const CartItem = (props) => {
     
     const data = props.item.item;
-    console.log(data)
+    // console.log(data)
     return (
 
         <Box>
